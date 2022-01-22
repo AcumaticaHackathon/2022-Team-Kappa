@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "bvOJd18e5MHzofbdLty7tenlI/kcUq71Nn6v/duQ5ki57xjIyKLJvyJz31/vLyZpJrxsxm/Cs+JdopPZXQiIzw==",
+  "success": true,
+  "projectFilePath": "C:\\Acumatica\\KAP21_206_0024\\App_Data\\Projects\\KAPPA\\KAPPA\\KAPPA.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\rwaite\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\5.0.0\\microsoft.bcl.asyncinterfaces.5.0.0.nupkg.sha512",
+    "C:\\Users\\rwaite\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512",
+    "C:\\Users\\rwaite\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512"
+  ],
+  "logs": []
+}

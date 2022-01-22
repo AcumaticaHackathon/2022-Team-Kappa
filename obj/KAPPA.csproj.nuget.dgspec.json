@@ -1,0 +1,66 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Acumatica\\KAP21_206_0024\\App_Data\\Projects\\KAPPA\\KAPPA\\KAPPA.csproj": {}
+  },
+  "projects": {
+    "C:\\Acumatica\\KAP21_206_0024\\App_Data\\Projects\\KAPPA\\KAPPA\\KAPPA.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Acumatica\\KAP21_206_0024\\App_Data\\Projects\\KAPPA\\KAPPA\\KAPPA.csproj",
+        "projectName": "KAPPA",
+        "projectPath": "C:\\Acumatica\\KAP21_206_0024\\App_Data\\Projects\\KAPPA\\KAPPA\\KAPPA.csproj",
+        "packagesPath": "C:\\Users\\rwaite\\.nuget\\packages\\",
+        "outputPath": "C:\\Acumatica\\KAP21_206_0024\\App_Data\\Projects\\KAPPA\\KAPPA\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\rwaite\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net48"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\TestSDK\\TestSDK_21_204_0055_58\\packages": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net48": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net48": {
+          "dependencies": {
+            "Microsoft.Bcl.AsyncInterfaces": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "System.Runtime.CompilerServices.Unsafe": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    }
+  }
+}
