@@ -31,7 +31,9 @@ namespace KAPPA
 
             var tableName = kappaType.Name;
 
-            var script = $"Create Table tableName (";
+            
+
+            List<string> tsqlColumns = new List<string>();
 
             foreach (var t in kappaType.GetProperties())
             {
@@ -40,17 +42,31 @@ namespace KAPPA
                 string feildType = null;
                 PXTrace.WriteInformation(t.ToString());
                 WriteLog($"Processing {typeName}.{t.Name}");
+                feildName = t.Name;
+                
                 foreach (var att in t.GetCustomAttributes())
                 {
                     if (att is PXDBStringAttribute)
                       {
-                        feildName = ((PXDBStringAttribute)att).FieldName;
                         feildSize = ((PXDBStringAttribute)att).Length;
-                        //feildType = ((PXDBStringAttribute)att).;
+                        feildType = $"NVarchar({feildSize})";
+                        tsqlColumns.Add($"{feildName} {feildType}");
                     }
-                    WriteLog($"Processing {typeName}.{t.Name} Attribute:{att.ToString()}");
+                    if (att is PXDBIntAttribute)
+                    {
+                        feildType = "int";
+                        tsqlColumns.Add($"{feildName} {feildType}");
+                    }
+                    if (att is PXDBIntAttribute)
+                    {
+                        feildType = "bit";
+                        tsqlColumns.Add($"{feildName} {feildType}");
+                    }
+                    WriteLog($"Processing {typeName}.{t.Name} Attribute:{att}");
                 }
             }
+
+            var script = $"Create Table {tableName} ({string.Join(" , ", tsqlColumns.ToArray())})";
 
             var testSql = @"
 Create Table Test123 
@@ -60,23 +76,19 @@ Create Table Test123
 )
 ";
 
-            var tsqlToDeterminIfFeildExists = @"
-Select count(*) 
-from sys.all_columns C
-inner join sys.tables T on T.object_id = C.object_id
-Where T.name = 'test123'
-and C.name = 'column1'
-";
+            //            var tsqlToDeterminIfFeildExists = @"
+            //Select count(*) 
+            //from sys.all_columns C
+            //inner join sys.tables T on T.object_id = C.object_id
+            //Where T.name = 'test123'
+            //and C.name = 'column1'
+            //";
 
-
-            //ystem.Data.ParameterDirection direction = new System.Data.ParameterDirection();
-            //PXDatabase.Execute("sp_executesql", new PXSPParameter("test",);
+            PXSPParameter parameter = new PXSPInParameter("@DynamicSql", PXDbType.NVarChar, testSql);
+            PXDatabase.Execute("sp_executesql", parameter);
 
         }
 
-        private bool DelegateToSearchCriteria(MemberInfo m, object filterCriteria)
-        {
-            return true;
-        }
+       
     }
 }

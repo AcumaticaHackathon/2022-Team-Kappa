@@ -8,24 +8,28 @@ using System.Threading.Tasks;
 
 namespace KAPPA
 {
+    [PXCacheName("Sample DAC for team Kappa hackathon project")]
     public class KAPSampleDac : IBqlTable
     {
         public abstract class kapString : BqlString.Field<kapString> { }
-        /// <summary>
-        /// Holds the code used as a primary key in the ClickToPay system
-        /// </summary>
         [PXDBString(256, IsUnicode = true)]
         [PXDefault("", PersistingCheck = PXPersistingCheck.Nothing)]
         [PXUIField(DisplayName = "Kappa String", Enabled = false)]
         public string KapString { get; set; }
 
-        public abstract class kapString2 : BqlString.Field<kapString2> { }
-        /// <summary>
-        /// Holds the code used as a primary key in the ClickToPay system
-        /// </summary>
-        [PXDBString(256, IsUnicode = true)]
+        public abstract class kapInt : BqlString.Field<kapInt> { }
+        [PXDBInt()]
         [PXDefault("", PersistingCheck = PXPersistingCheck.Nothing)]
-        [PXUIField(DisplayName = "Kappa String2", Enabled = false)]
-        public string KapString2 { get; set; }
+        [PXUIField(DisplayName = "Kappa Integer Sample")]
+        public int? KapInt { get; set; }
+
+
+        public abstract class kapBool : BqlBool.Field<kapBool> { }
+        [PXDBBool()]
+        [PXDefault(false, PersistingCheck = PXPersistingCheck.Nothing)]
+        [PXUIField(DisplayName = "Kappa Bool Sample")]
+        public bool? KapBool { get; set; }
+
+
     }
 }

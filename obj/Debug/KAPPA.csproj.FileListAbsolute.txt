@@ -287,4 +287,3 @@ C:\Acumatica\KAP21_206_0024\App_Data\Projects\KAPPA\KAPPA\obj\Debug\KAPPA.csproj
 C:\Acumatica\KAP21_206_0024\App_Data\Projects\KAPPA\KAPPA\obj\Debug\KAPPA.csproj.CopyComplete
 C:\Acumatica\KAP21_206_0024\App_Data\Projects\KAPPA\KAPPA\obj\Debug\KAPPA.dll
 C:\Acumatica\KAP21_206_0024\App_Data\Projects\KAPPA\KAPPA\obj\Debug\KAPPA.pdb
-C:\Acumatica\KAP21_206_0024\App_Data\Projects\KAPPA\KAPPA\obj\Debug\KAPPA.csprojAssemblyReference.cache
