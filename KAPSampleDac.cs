@@ -14,7 +14,7 @@ namespace KAPPA
         /// <summary>
         /// Holds the code used as a primary key in the ClickToPay system
         /// </summary>
-        [PXDBString(256, IsUnicode = true)]
+        [PXDBString(256, IsUnicode = true, IsKey = true)]
         [PXDefault("", PersistingCheck = PXPersistingCheck.Nothing)]
         [PXUIField(DisplayName = "Kappa String", Enabled = false)]
         public string KapString { get; set; }

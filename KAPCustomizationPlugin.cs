@@ -78,48 +78,87 @@ namespace KAPPA
 
                 Type myType = Type.GetType(giTable.FullName);
                 var sqlQuery = string.Format(@"IF NOT EXISTS(SELECT * FROM sys.objects WHERE name = '{0}')
-                                                    CREATE TABLE[dbo].[{0}](", giTable.Name);
+                                                    CREATE TABLE[dbo].[{0}]( [CompanyID] [int] NOT NULL,", giTable.Name);
 
+                var listOfKeys = new List<string>();
                 foreach (var t in kappaType.GetProperties())
                 {
                     string feildName = null;
                     int feildSize = 0;
                     string feildType = null;
-                    PXTrace.WriteInformation(t.ToString());
-                    WriteLog($"Processing {giTable.FullName}.{t.Name}");
+                    sqlQuery = sqlQuery + string.Format("[{0}] {1} NOT NULL,", t.Name, ConvertDBTypes(t.PropertyType.Name));
                     foreach (var att in t.GetCustomAttributes())
                     {
-                        if (att is PXDBStringAttribute)
+                        bool? isKey = null;
+                        if (att.GetType().GetProperty("IsKey") != null)
                         {
-                            feildName = ((PXDBStringAttribute)att).FieldName;
-                            feildSize = ((PXDBStringAttribute)att).Length;
-                            //feildType = ((PXDBStringAttribute)att).;
+                            isKey = ((PX.Data.PXDBFieldAttribute)att)?.IsKey;
                         }
+                        //if (att is PXDBStringAttribute)
+                        //{
+                        //    feildName = ((PXDBStringAttribute)att).FieldName;
+
+                        //    //feildType = ((PXDBStringAttribute)att).;
+                        //}
+                        if (isKey == true)
+                            listOfKeys.Add(t.Name);
+
                         WriteLog($"Processing {giTable.FullName}.{t.Name} Attribute:{att.ToString()}");
                     }
                 }
 
-                var testSql = @"
-Create Table Test123 
-(
-	column1 varchar(255),
-	column2 varchar(255)
-)
-";
 
-                var tsqlToDeterminIfFeildExists = @"
-Select count(*) 
-from sys.all_columns C
-inner join sys.tables T on T.object_id = C.object_id
-Where T.name = 'test123'
-and C.name = 'column1'
-";
+                sqlQuery = sqlQuery.TrimEnd(',');
+                sqlQuery = sqlQuery + string.Format(" CONSTRAINT [PK_{0}] PRIMARY KEY CLUSTERED ( ", giTable.Name);
+                sqlQuery = sqlQuery + "[CompanyID] ASC, ";
+
+                if (listOfKeys.Count > 0)
+                {
+
+                    foreach (var key in listOfKeys)
+                    {
+                        sqlQuery = sqlQuery + string.Format("[{0}] ASC", key);
+                    }
+                    
+                    
+                }
+                sqlQuery.TrimEnd(',');
+                sqlQuery = sqlQuery + ")";
+                sqlQuery = sqlQuery + ")";
+                //PXSPParameter paramater = new PXSPParameter();
+                //PXDatabase.Execute("sp_executesql", sqlQuery);
+
+
+//                var tsqlToDeterminIfFeildExists = @"
+//Select count(*) 
+//from sys.all_columns C
+//inner join sys.tables T on T.object_id = C.object_id
+//Where T.name = 'test123'
+//and C.name = 'column1'
+//";
 
 
                 //ystem.Data.ParameterDirection direction = new System.Data.ParameterDirection();
                 //PXDatabase.Execute("sp_executesql", new PXSPParameter("test",);
 
             }
+        }
+
+        private string ConvertDBTypes(string reflectedType)
+        {
+            reflectedType = reflectedType.ToLower();
+            if (reflectedType == "string")
+                return "varchar(255)";
+            else if (reflectedType.Contains("int"))
+                return "int";
+            else if (reflectedType.Contains("bool"))
+                return "bit";
+            else if (reflectedType.Contains("decimal"))
+                return "decimal(19, 6)";
+            else if (reflectedType.Contains("guid"))
+                return "uniqueidentifier";
+            else
+                return "DateTime";
         }
 
         private bool DelegateToSearchCriteria(MemberInfo m, object filterCriteria)

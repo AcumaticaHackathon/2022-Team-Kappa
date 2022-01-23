@@ -61,7 +61,7 @@
   <ItemGroup>
     <Compile Include="Examples.cs" />
     <Compile Include="KAPCustomizationPlugin.cs" />
-    <Compile Include="KAPSalesOrderMaintExt.cs" />
+    <Compile Include="KAPSOSetupMaintExt.cs" />
     <Compile Include="KAPSampleDac.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
