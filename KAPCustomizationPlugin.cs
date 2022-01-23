@@ -25,19 +25,52 @@ namespace KAPPA
         {
             PXTrace.WriteInformation("testig_Kappa_ExecuteKappaDatabaseInitializer");
             var typeName = "KAPPA.KAPSampleDac";
-            var test = Type.GetType(typeName);
+            var kappaType = Type.GetType(typeName);
             //var test = typeof(KAPSampleDac);
             WriteLog($"Processing Type:{typeName}");
 
-            foreach (var t in test.GetProperties())
+            var tableName = kappaType.Name;
+
+            var script = $"Create Table tableName (";
+
+            foreach (var t in kappaType.GetProperties())
             {
+                string feildName = null;
+                int feildSize = 0;
+                string feildType = null;
                 PXTrace.WriteInformation(t.ToString());
                 WriteLog($"Processing {typeName}.{t.Name}");
                 foreach (var att in t.GetCustomAttributes())
                 {
+                    if (att is PXDBStringAttribute)
+                      {
+                        feildName = ((PXDBStringAttribute)att).FieldName;
+                        feildSize = ((PXDBStringAttribute)att).Length;
+                        //feildType = ((PXDBStringAttribute)att).;
+                    }
                     WriteLog($"Processing {typeName}.{t.Name} Attribute:{att.ToString()}");
                 }
             }
+
+            var testSql = @"
+Create Table Test123 
+(
+	column1 varchar(255),
+	column2 varchar(255)
+)
+";
+
+            var tsqlToDeterminIfFeildExists = @"
+Select count(*) 
+from sys.all_columns C
+inner join sys.tables T on T.object_id = C.object_id
+Where T.name = 'test123'
+and C.name = 'column1'
+";
+
+
+            //ystem.Data.ParameterDirection direction = new System.Data.ParameterDirection();
+            //PXDatabase.Execute("sp_executesql", new PXSPParameter("test",);
 
         }
 
