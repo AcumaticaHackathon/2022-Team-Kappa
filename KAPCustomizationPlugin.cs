@@ -71,6 +71,8 @@ namespace KAPPA
             {
                 var giTable = (PXTablesSelectorAttribute.SingleTable)res;
                 var kappaType = Type.GetType(giTable.FullName);
+                if (kappaType == null)
+                    continue;
                 //var test = typeof(KAPSampleDac);
                 WriteLog($"Processing Type:{giTable.FullName}");
 
@@ -108,34 +110,37 @@ namespace KAPPA
                 }
 
 
-                sqlQuery = sqlQuery.TrimEnd(',');
+                sqlQuery = sqlQuery.Trim().TrimEnd(',');
                 sqlQuery = sqlQuery + string.Format(" CONSTRAINT [PK_{0}] PRIMARY KEY CLUSTERED ( ", giTable.Name);
-                sqlQuery = sqlQuery + "[CompanyID] ASC, ";
+                sqlQuery = sqlQuery + "[CompanyID] ASC,";
 
                 if (listOfKeys.Count > 0)
                 {
 
                     foreach (var key in listOfKeys)
                     {
-                        sqlQuery = sqlQuery + string.Format("[{0}] ASC", key);
+                        sqlQuery = sqlQuery + string.Format("[{0}] ASC,", key);
                     }
                     
                     
                 }
-                sqlQuery.TrimEnd(',');
+                sqlQuery = sqlQuery.Trim().TrimEnd(',');
                 sqlQuery = sqlQuery + ")";
                 sqlQuery = sqlQuery + ")";
+
+                PXSPParameter parameter = new PXSPInParameter("@DynamicSql", PXDbType.NVarChar, sqlQuery);
+                PXDatabase.Execute("sp_executesql", parameter);
                 //PXSPParameter paramater = new PXSPParameter();
                 //PXDatabase.Execute("sp_executesql", sqlQuery);
 
 
-//                var tsqlToDeterminIfFeildExists = @"
-//Select count(*) 
-//from sys.all_columns C
-//inner join sys.tables T on T.object_id = C.object_id
-//Where T.name = 'test123'
-//and C.name = 'column1'
-//";
+                //                var tsqlToDeterminIfFeildExists = @"
+                //Select count(*) 
+                //from sys.all_columns C
+                //inner join sys.tables T on T.object_id = C.object_id
+                //Where T.name = 'test123'
+                //and C.name = 'column1'
+                //";
 
 
                 //ystem.Data.ParameterDirection direction = new System.Data.ParameterDirection();
