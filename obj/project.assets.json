@@ -278,24 +278,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\rwaite\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\RGopinathan\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Acumatica\\KAP21_206_0024\\App_Data\\Projects\\KAPPA\\KAPPA\\KAPPA.csproj",
+      "projectUniqueName": "C:\\Users\\RGopinathan\\OneDrive - CCS Technology Group, LLC\\Documents\\GitHub\\2022-Team-Kappa\\KAPPA.csproj",
       "projectName": "KAPPA",
-      "projectPath": "C:\\Acumatica\\KAP21_206_0024\\App_Data\\Projects\\KAPPA\\KAPPA\\KAPPA.csproj",
-      "packagesPath": "C:\\Users\\rwaite\\.nuget\\packages\\",
-      "outputPath": "C:\\Acumatica\\KAP21_206_0024\\App_Data\\Projects\\KAPPA\\KAPPA\\obj\\",
+      "projectPath": "C:\\Users\\RGopinathan\\OneDrive - CCS Technology Group, LLC\\Documents\\GitHub\\2022-Team-Kappa\\KAPPA.csproj",
+      "packagesPath": "C:\\Users\\RGopinathan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\RGopinathan\\OneDrive - CCS Technology Group, LLC\\Documents\\GitHub\\2022-Team-Kappa\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\rwaite\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\RGopinathan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -304,7 +304,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\TestSDK\\TestSDK_21_204_0055_58\\packages": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
