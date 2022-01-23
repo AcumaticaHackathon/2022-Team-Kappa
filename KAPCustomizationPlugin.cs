@@ -24,33 +24,21 @@ namespace KAPPA
         public void ExecuteKappaDatabaseInitializer()
         {
             PXTrace.WriteInformation("testig_Kappa_ExecuteKappaDatabaseInitializer");
-            var test = typeof(KAPSampleDac);
-            foreach (var custAtb in test.CustomAttributes)
-            {
-                PXTrace.WriteInformation(custAtb.ToString());
-            }
-            var members = test.FindMembers(
-                MemberTypes.All, 
-                BindingFlags.Default,
-                new MemberFilter(DelegateToSearchCriteria),
-                "*");
+            var typeName = "KAPPA.KAPSampleDac";
+            var test = Type.GetType(typeName);
+            //var test = typeof(KAPSampleDac);
+            WriteLog($"Processing Type:{typeName}");
 
-            foreach(var t in members)
-            {
-                PXTrace.WriteInformation($"Name:{t.Name} type:{t.MemberType}");
-
-            }
-
-            foreach(var t in test.GetProperties())
+            foreach (var t in test.GetProperties())
             {
                 PXTrace.WriteInformation(t.ToString());
+                WriteLog($"Processing {typeName}.{t.Name}");
+                foreach (var att in t.GetCustomAttributes())
+                {
+                    WriteLog($"Processing {typeName}.{t.Name} Attribute:{att.ToString()}");
+                }
             }
 
-            PXTrace.WriteInformation("test");
-            //foreach (var atb in test.FindMembers)
-            //{
-            //    PXTrace.WriteInformation(custAtb.ToString());
-            //}
         }
 
         private bool DelegateToSearchCriteria(MemberInfo m, object filterCriteria)
